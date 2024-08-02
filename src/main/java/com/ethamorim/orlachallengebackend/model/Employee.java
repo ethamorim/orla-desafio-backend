@@ -26,7 +26,7 @@ public class Employee {
 
     boolean isManager;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     Department department;
 
     public int getId() {

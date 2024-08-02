@@ -1,7 +1,15 @@
 package com.ethamorim.orlachallengebackend;
 
+import com.ethamorim.orlachallengebackend.model.Department;
+import com.ethamorim.orlachallengebackend.model.Employee;
+import com.ethamorim.orlachallengebackend.repository.DepartmentRepository;
+import com.ethamorim.orlachallengebackend.repository.EmployeeRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import java.time.LocalDate;
 
 @SpringBootApplication
 public class OrlaChallengeBackendApplication {
@@ -10,4 +18,33 @@ public class OrlaChallengeBackendApplication {
         SpringApplication.run(OrlaChallengeBackendApplication.class, args);
     }
 
+    @Bean
+    public CommandLineRunner populateDatabase(
+            DepartmentRepository departmentRepository,
+            EmployeeRepository employeeRepository
+    ) {
+        return (args) -> {
+            var existent = departmentRepository.findByEmail("it@test.com");
+            if (existent == null) {
+                System.out.println("Populating Database...");
+
+                var department = new Department();
+                department.setName("IT");
+                department.setEmail("it@test.com");
+                departmentRepository.save(department);
+
+                var employee = new Employee();
+                employee.setCpf("12345678912");
+                employee.setName("Orlando");
+                employee.setEmail("orlando@test.com");
+                employee.setIncome(12000L);
+                employee.setManager(true);
+                employee.setStartDate(LocalDate.now());
+                employee.setDepartment(department);
+                employeeRepository.save(employee);
+
+                System.out.println("Database populated!");
+            }
+        };
+    }
 }
