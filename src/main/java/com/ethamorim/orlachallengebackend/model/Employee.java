@@ -10,6 +10,16 @@ public class Employee {
 
     public Employee() {}
 
+    public Employee(String name, String email, String cpf, LocalDate startDate, long income, boolean isManager, Department department) {
+        this.name = name;
+        this.email = email;
+        this.cpf = cpf;
+        this.startDate = startDate;
+        this.income = income;
+        this.isManager = isManager;
+        this.department = department;
+    }
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
