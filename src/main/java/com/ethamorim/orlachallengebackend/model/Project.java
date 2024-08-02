@@ -19,8 +19,10 @@ public class Project {
     @Column(columnDefinition = "TEXT")
     String description;
 
+    @Column(nullable = false)
     Instant creationDate;
 
+    @Column(nullable = false)
     Instant previsionDate;
 
     public int getId() {

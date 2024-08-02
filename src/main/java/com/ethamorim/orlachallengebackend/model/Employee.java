@@ -23,15 +23,19 @@ public class Employee {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
+    @Column(nullable = false)
     String name;
 
     @NaturalId
     String email;
 
+    @Column(nullable = false, unique = true)
     String cpf;
 
+    @Column(nullable = false)
     LocalDate startDate;
 
+    @Column(nullable = false)
     long income;
 
     boolean isManager;

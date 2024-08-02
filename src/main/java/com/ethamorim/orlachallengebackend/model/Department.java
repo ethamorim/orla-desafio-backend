@@ -1,9 +1,6 @@
 package com.ethamorim.orlachallengebackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
@@ -14,6 +11,7 @@ public class Department {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
+    @Column(nullable = false)
     String name;
 
     @NaturalId
