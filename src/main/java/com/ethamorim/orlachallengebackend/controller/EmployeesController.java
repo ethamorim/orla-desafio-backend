@@ -1,9 +1,9 @@
 package com.ethamorim.orlachallengebackend.controller;
 
-import com.ethamorim.orlachallengebackend.controller.resource.EmployeeResource;
+import com.ethamorim.orlachallengebackend.controller.resource.Employee;
 import com.ethamorim.orlachallengebackend.exception.NoRecordFoundException;
-import com.ethamorim.orlachallengebackend.model.Department;
-import com.ethamorim.orlachallengebackend.model.Employee;
+import com.ethamorim.orlachallengebackend.model.DepartmentModel;
+import com.ethamorim.orlachallengebackend.model.EmployeeModel;
 import com.ethamorim.orlachallengebackend.repository.DepartmentRepository;
 import com.ethamorim.orlachallengebackend.repository.EmployeeRepository;
 import org.springframework.web.bind.annotation.*;
@@ -23,20 +23,20 @@ public class EmployeesController {
     }
 
     @GetMapping
-    public List<Employee> getEmployee() {
+    public List<EmployeeModel> getEmployee() {
         return repository.findAll();
     }
 
     @PostMapping
-    public void postEmployee(@RequestBody EmployeeResource employee) {
-        Optional<Department> optionalDepartment;
+    public void postEmployee(@RequestBody Employee employee) {
+        Optional<DepartmentModel> optionalDepartment;
         if (employee.departmentEmail() != null) {
             optionalDepartment = departmentRepository.findByEmail(employee.departmentEmail());
         } else {
             optionalDepartment = departmentRepository.findById(employee.departmentId());
         }
         var department = optionalDepartment.orElseThrow(() -> new NoRecordFoundException("There is no department with the given id"));
-        var newEmployee = new Employee(
+        var newEmployee = new EmployeeModel(
                 employee.name(),
                 employee.email(),
                 employee.cpf(),

@@ -2,7 +2,7 @@ package com.ethamorim.orlachallengebackend.controller.resource;
 
 import java.time.LocalDate;
 
-public record EmployeeResource(
+public record Employee(
         String name,
         String cpf,
         String email,

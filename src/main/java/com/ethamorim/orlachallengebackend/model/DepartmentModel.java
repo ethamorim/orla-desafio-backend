@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
-public class Department {
+public class DepartmentModel {
 
-    public Department() {}
+    public DepartmentModel() {}
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;

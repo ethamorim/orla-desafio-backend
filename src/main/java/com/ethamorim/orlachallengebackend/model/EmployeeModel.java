@@ -6,11 +6,11 @@ import org.hibernate.annotations.NaturalId;
 import java.time.LocalDate;
 
 @Entity
-public class Employee {
+public class EmployeeModel {
 
-    public Employee() {}
+    public EmployeeModel() {}
 
-    public Employee(String name, String email, String cpf, LocalDate startDate, long income, boolean isManager, Department department) {
+    public EmployeeModel(String name, String email, String cpf, LocalDate startDate, long income, boolean isManager, DepartmentModel department) {
         this.name = name;
         this.email = email;
         this.cpf = cpf;
@@ -41,7 +41,7 @@ public class Employee {
     boolean isManager;
 
     @ManyToOne
-    Department department;
+    DepartmentModel department;
 
     public int getId() {
         return id;
@@ -95,11 +95,11 @@ public class Employee {
         isManager = manager;
     }
 
-    public Department getDepartment() {
+    public DepartmentModel getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(DepartmentModel department) {
         this.department = department;
     }
 }

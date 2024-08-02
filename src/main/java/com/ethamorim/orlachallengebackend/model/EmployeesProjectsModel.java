@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
-public class EmployeesProjects {
+public class EmployeesProjectsModel {
 
-    public EmployeesProjects() {}
+    public EmployeesProjectsModel() {}
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
@@ -15,11 +15,11 @@ public class EmployeesProjects {
 
     @NaturalId
     @ManyToOne
-    Employee employee;
+    EmployeeModel employee;
 
     @NaturalId
     @ManyToOne
-    Project project;
+    ProjectModel project;
 
     public int getId() {
         return id;

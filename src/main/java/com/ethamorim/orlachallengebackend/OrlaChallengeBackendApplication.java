@@ -1,7 +1,7 @@
 package com.ethamorim.orlachallengebackend;
 
-import com.ethamorim.orlachallengebackend.model.Department;
-import com.ethamorim.orlachallengebackend.model.Employee;
+import com.ethamorim.orlachallengebackend.model.DepartmentModel;
+import com.ethamorim.orlachallengebackend.model.EmployeeModel;
 import com.ethamorim.orlachallengebackend.repository.DepartmentRepository;
 import com.ethamorim.orlachallengebackend.repository.EmployeeRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -28,12 +28,12 @@ public class OrlaChallengeBackendApplication {
             if (existent == null) {
                 System.out.println("Populating Database...");
 
-                var department = new Department();
+                var department = new DepartmentModel();
                 department.setName("IT");
                 department.setEmail("it@test.com");
                 departmentRepository.save(department);
 
-                var employee = new Employee();
+                var employee = new EmployeeModel();
                 employee.setCpf("12345678912");
                 employee.setName("Orlando");
                 employee.setEmail("orlando@test.com");

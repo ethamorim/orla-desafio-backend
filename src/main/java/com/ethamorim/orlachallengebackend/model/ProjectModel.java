@@ -6,9 +6,9 @@ import org.hibernate.annotations.NaturalId;
 import java.time.Instant;
 
 @Entity
-public class Project {
+public class ProjectModel {
 
-    public Project() {}
+    public ProjectModel() {}
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
