@@ -9,5 +9,6 @@ public record EmployeeResource(
         LocalDate startDate,
         long income,
         boolean isManager,
-        int departmentId
+        int departmentId,
+        String departmentEmail
 ) { }
