@@ -13,11 +13,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/employees")
-public class EmployeeController {
+public class EmployeesController {
 
     private final EmployeeRepository repository;
     private final DepartmentRepository departmentRepository;
-    public EmployeeController(EmployeeRepository repository, DepartmentRepository departmentRepository) {
+    public EmployeesController(EmployeeRepository repository, DepartmentRepository departmentRepository) {
         this.repository = repository;
         this.departmentRepository = departmentRepository;
     }
