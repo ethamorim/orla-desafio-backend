@@ -31,13 +31,14 @@ public class EmployeesController {
 
     @PostMapping
     public ResponseEntity<EmployeeModel> postEmployee(@RequestBody Employee employee) {
-        Optional<DepartmentModel> optionalDepartment;
+        DepartmentModel department;
         if (employee.departmentEmail() != null) {
-            optionalDepartment = departmentRepository.findByEmail(employee.departmentEmail());
+            var optionalDepartment = departmentRepository.findByEmail(employee.departmentEmail());
+            department = optionalDepartment.orElseThrow(() -> new NoRecordFoundException("There is no department with the given departmentEmail"));
         } else {
-            optionalDepartment = departmentRepository.findById(employee.departmentId());
+            var optionalDepartment = departmentRepository.findById(employee.departmentId());
+            department = optionalDepartment.orElseThrow(() -> new NoRecordFoundException("There is no department with the given departmentId"));
         }
-        var department = optionalDepartment.orElseThrow(() -> new NoRecordFoundException("There is no department with the given id"));
         var newEmployee = new EmployeeModel(
                 employee.name(),
                 employee.email(),
