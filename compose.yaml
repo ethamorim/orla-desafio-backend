@@ -1,0 +1,30 @@
+services:
+  server:
+    build:
+      context: .
+      target: run
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/orla_challenge"
+      SPRING_DATASOURCE_USERNAME: "postgres"
+      SPRING_DATASOURCE_PASSWORD: "postgres"
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: orla_challenge
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+        - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d orla_challenge -U postgres" ]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+volumes:
+  db-data:
