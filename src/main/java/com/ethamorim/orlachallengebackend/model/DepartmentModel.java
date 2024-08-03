@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
+@Table(name = "departments")
 public class DepartmentModel {
 
     public DepartmentModel() {}

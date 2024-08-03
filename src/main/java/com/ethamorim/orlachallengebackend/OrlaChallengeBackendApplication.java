@@ -2,8 +2,8 @@ package com.ethamorim.orlachallengebackend;
 
 import com.ethamorim.orlachallengebackend.model.DepartmentModel;
 import com.ethamorim.orlachallengebackend.model.EmployeeModel;
-import com.ethamorim.orlachallengebackend.repository.DepartmentRepository;
-import com.ethamorim.orlachallengebackend.repository.EmployeeRepository;
+import com.ethamorim.orlachallengebackend.repository.DepartmentsRepository;
+import com.ethamorim.orlachallengebackend.repository.EmployeesRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,12 +20,12 @@ public class OrlaChallengeBackendApplication {
 
     @Bean
     public CommandLineRunner populateDatabase(
-            DepartmentRepository departmentRepository,
-            EmployeeRepository employeeRepository
+            DepartmentsRepository departmentRepository,
+            EmployeesRepository employeeRepository
     ) {
         return (args) -> {
             var existent = departmentRepository.findByEmail("it@test.com");
-            if (existent == null) {
+            if (existent.isEmpty()) {
                 System.out.println("Populating Database...");
 
                 var department = new DepartmentModel();

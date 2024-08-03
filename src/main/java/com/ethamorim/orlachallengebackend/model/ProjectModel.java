@@ -6,9 +6,17 @@ import org.hibernate.annotations.NaturalId;
 import java.time.Instant;
 
 @Entity
+@Table(name = "projects")
 public class ProjectModel {
 
     public ProjectModel() {}
+
+    public ProjectModel(String name, String description, Instant creationDate, Instant previsionDate) {
+        this.name = name;
+        this.description = description;
+        this.creationDate = creationDate;
+        this.previsionDate = previsionDate;
+    }
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;

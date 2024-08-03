@@ -4,8 +4,8 @@ import com.ethamorim.orlachallengebackend.controller.resource.Employee;
 import com.ethamorim.orlachallengebackend.exception.NoRecordFoundException;
 import com.ethamorim.orlachallengebackend.model.DepartmentModel;
 import com.ethamorim.orlachallengebackend.model.EmployeeModel;
-import com.ethamorim.orlachallengebackend.repository.DepartmentRepository;
-import com.ethamorim.orlachallengebackend.repository.EmployeeRepository;
+import com.ethamorim.orlachallengebackend.repository.DepartmentsRepository;
+import com.ethamorim.orlachallengebackend.repository.EmployeesRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +15,9 @@ import java.util.Optional;
 @RequestMapping("/employees")
 public class EmployeesController {
 
-    private final EmployeeRepository repository;
-    private final DepartmentRepository departmentRepository;
-    public EmployeesController(EmployeeRepository repository, DepartmentRepository departmentRepository) {
+    private final EmployeesRepository repository;
+    private final DepartmentsRepository departmentRepository;
+    public EmployeesController(EmployeesRepository repository, DepartmentsRepository departmentRepository) {
         this.repository = repository;
         this.departmentRepository = departmentRepository;
     }

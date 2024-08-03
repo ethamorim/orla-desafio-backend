@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
+@Table(name = "employees")
 public class EmployeeModel {
 
     public EmployeeModel() {}
@@ -101,5 +103,20 @@ public class EmployeeModel {
 
     public void setDepartment(DepartmentModel department) {
         this.department = department;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EmployeeModel that = (EmployeeModel) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(cpf, that.cpf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cpf, email);
     }
 }
