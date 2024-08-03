@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Responsável pelo direcionamento de exceções para o tratamento adequado,
+ * buscando padronizar os erros lançados.
+ *
+ * @author ethamorim
+ */
 @ControllerAdvice
 public class OrlaChallengeBackendExceptionHandler {
 

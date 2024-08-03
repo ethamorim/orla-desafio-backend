@@ -17,6 +17,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Testes unitários do controller `EmployeesController`.
+ *
+ * @author ethamorim
+ */
 @WebMvcTest(EmployeesController.class)
 public class EmployeesControllerTest {
 

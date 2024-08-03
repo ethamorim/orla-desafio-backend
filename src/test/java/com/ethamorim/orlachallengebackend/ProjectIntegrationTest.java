@@ -18,6 +18,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * Teste de integração com as APIs criadas.
+ * Testa as APIs de maneira gradual dados os recursos disponíveis.
+ *
+ * @author ethamorim
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")

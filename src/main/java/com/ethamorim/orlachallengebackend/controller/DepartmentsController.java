@@ -9,6 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller responsável por gerenciar as requisições relacionadas a departamentos.
+ * Disponibiliza as APIs abaixo:
+ * - GET /departments
+ * - POST /departments
+ *
+ * @author ethamorim
+ */
 @RestController
 @RequestMapping("/departments")
 public class DepartmentsController {

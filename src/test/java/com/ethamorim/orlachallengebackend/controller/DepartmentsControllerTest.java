@@ -14,6 +14,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
+/**
+ * Testes unitários do controller `DepartmentsController`.
+ *
+ * @author ethamorim
+ */
 @WebMvcTest(DepartmentsController.class)
 public class DepartmentsControllerTest {
 

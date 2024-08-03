@@ -7,6 +7,13 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Entidade que representa os funcionários.
+ * Possui uma relação de um para muitos com `DepartmentModel`.
+ * Possui uma relação de muitos para muitos com `ProjectModel`.
+ *
+ * @author ethamorim
+ */
 @Entity
 @Table(name = "employees")
 public class EmployeeModel {

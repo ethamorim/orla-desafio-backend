@@ -6,6 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import java.util.Set;
 
+/**
+ * Repositório do recurso de Projetos, responsável por abstrair
+ * as operações com o banco de dados.
+ *
+ * @author ethamorim
+ */
 public interface ProjectsRepository extends JpaRepository<ProjectModel, Integer> {
     @Query(
             "SELECT e " +

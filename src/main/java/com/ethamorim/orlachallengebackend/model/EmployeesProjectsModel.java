@@ -3,6 +3,11 @@ package com.ethamorim.orlachallengebackend.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
+/**
+ * Entidade que representa a associação entre Funcionários e Projetos.
+ *
+ * @author ethamorim
+ */
 @Entity
 @Table(name = "employees_projects")
 public class EmployeesProjectsModel {

@@ -19,6 +19,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Testes unitários do controller `ProjectsController`.
+ *
+ * @author ethamorim
+ */
 @WebMvcTest(ProjectsController.class)
 public class ProjectsControllerTest {
 

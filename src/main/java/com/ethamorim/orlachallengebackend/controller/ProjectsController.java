@@ -15,6 +15,15 @@ import org.springframework.web.bind.annotation.*;
 import java.time.ZoneId;
 import java.util.*;
 
+/**
+ * Controller responsável por gerenciar as requisições relacionadas a projetos.
+ * Disponibiliza as APIs abaixo:
+ * - GET /projects
+ * - GET /projects/{id}
+ * - POST /projects
+ *
+ * @author ethamorim
+ */
 @RestController
 @RequestMapping("/projects")
 public class ProjectsController {

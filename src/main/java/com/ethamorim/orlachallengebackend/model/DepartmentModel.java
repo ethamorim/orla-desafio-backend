@@ -3,6 +3,12 @@ package com.ethamorim.orlachallengebackend.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
+/**
+ * Entidade que representa os departamentos.
+ * Possui uma relação de um para muitos com `EmployeeModel`.
+ *
+ * @author ethamorim
+ */
 @Entity
 @Table(name = "departments")
 public class DepartmentModel {

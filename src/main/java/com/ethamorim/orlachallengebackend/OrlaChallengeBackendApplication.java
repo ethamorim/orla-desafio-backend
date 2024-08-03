@@ -11,6 +11,11 @@ import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
 
+/**
+ * Classe principal da aplicação, responsável por inicializar o Spring Boot.
+ *
+ * @author ethamorim
+ */
 @SpringBootApplication
 public class OrlaChallengeBackendApplication {
 

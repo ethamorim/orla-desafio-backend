@@ -11,8 +11,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
+/**
+ * Controller responsável por gerenciar as requisições relacionadas a funcionários.
+ * Disponibiliza as APIs abaixo:
+ * - GET /employees
+ * - POST /employees
+ *
+ * @author ethamorim
+ */
 @RestController
 @RequestMapping("/employees")
 public class EmployeesController {

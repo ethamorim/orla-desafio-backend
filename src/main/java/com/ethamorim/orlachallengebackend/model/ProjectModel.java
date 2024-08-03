@@ -6,6 +6,12 @@ import org.hibernate.annotations.NaturalId;
 import java.time.Instant;
 import java.util.Set;
 
+/**
+ * Entidade que representa os projetos.
+ * Possui uma relação de muitos para muitos com `EmployeeModel`.
+ *
+ * @author ethamorim
+ */
 @Entity
 @Table(name = "projects")
 public class ProjectModel {
