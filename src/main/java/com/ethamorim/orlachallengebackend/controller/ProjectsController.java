@@ -9,12 +9,8 @@ import com.ethamorim.orlachallengebackend.repository.EmployeesProjectsRepository
 import com.ethamorim.orlachallengebackend.repository.EmployeesRepository;
 import com.ethamorim.orlachallengebackend.repository.ProjectsRepository;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.ZoneId;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @RequestMapping("/projects")
@@ -38,6 +34,14 @@ public class ProjectsController {
         return repository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public ProjectModel getProject(@PathVariable Integer id) {
+        var project = repository.findById(id)
+                .orElseThrow(() -> new NoRecordFoundException("There is no project with given id"));
+        project.setEmployees(repository.findMembersByProjectId(project.getId()));
+        return project;
+    }
+
     @PostMapping
     public void postProject(@RequestBody Project project) {
         Optional<EmployeeModel> optionalOwner;
@@ -50,17 +54,19 @@ public class ProjectsController {
 
         Set<EmployeeModel> membersOfProject = new HashSet<>();
         membersOfProject.add(owner);
-        project.members().forEach(email -> {
-            var member = employeesRepository.findByEmail(email)
-                    .orElseThrow(() -> new NoRecordFoundException("Project member does not exist"));
-            membersOfProject.add(member);
-        });
-
+        if (project.members() != null) {
+            project.members().forEach(email -> {
+                var member = employeesRepository.findByEmail(email)
+                        .orElseThrow(() -> new NoRecordFoundException("Project member does not exist"));
+                membersOfProject.add(member);
+            });
+        }
         var newProject = new ProjectModel(
                 project.name(),
                 project.description(),
                 project.creationDate().atStartOfDay(ZoneId.systemDefault()).toInstant(),
-                project.previsionDate().atStartOfDay(ZoneId.systemDefault()).toInstant()
+                project.previsionDate().atStartOfDay(ZoneId.systemDefault()).toInstant(),
+                membersOfProject
         );
         repository.save(newProject);
 

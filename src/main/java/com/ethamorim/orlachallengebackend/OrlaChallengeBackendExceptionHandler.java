@@ -13,7 +13,7 @@ import java.util.Map;
 @ControllerAdvice
 public class OrlaChallengeBackendExceptionHandler {
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NoRecordFoundException.class)
     public ResponseEntity<Map<String, String>> handleBadRequest(NoRecordFoundException e) {
         Map<String, String> message = new HashMap<>();
