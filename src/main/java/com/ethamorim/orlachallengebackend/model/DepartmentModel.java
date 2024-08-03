@@ -9,6 +9,11 @@ public class DepartmentModel {
 
     public DepartmentModel() {}
 
+    public DepartmentModel(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 

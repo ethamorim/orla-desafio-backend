@@ -1,5 +1,6 @@
 package com.ethamorim.orlachallengebackend.controller;
 
+import com.ethamorim.orlachallengebackend.controller.resource.Employee;
 import com.ethamorim.orlachallengebackend.controller.resource.Project;
 import com.ethamorim.orlachallengebackend.exception.NoRecordFoundException;
 import com.ethamorim.orlachallengebackend.model.EmployeeModel;
@@ -8,6 +9,8 @@ import com.ethamorim.orlachallengebackend.model.ProjectModel;
 import com.ethamorim.orlachallengebackend.repository.EmployeesProjectsRepository;
 import com.ethamorim.orlachallengebackend.repository.EmployeesRepository;
 import com.ethamorim.orlachallengebackend.repository.ProjectsRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.time.ZoneId;
 import java.util.*;
@@ -43,14 +46,15 @@ public class ProjectsController {
     }
 
     @PostMapping
-    public void postProject(@RequestBody Project project) {
-        Optional<EmployeeModel> optionalOwner;
+    public ResponseEntity<ProjectModel> postProject(@RequestBody Project project) {
+        EmployeeModel owner;
         if (project.ownerEmail() != null) {
-            optionalOwner = employeesRepository.findByEmail(project.ownerEmail());
+            var optionalOwner = employeesRepository.findByEmail(project.ownerEmail());
+            owner = optionalOwner.orElseThrow(() -> new NoRecordFoundException("There is no employee with given ownerEmail"));
         } else {
-            optionalOwner = employeesRepository.findById(project.ownerId());
+            var optionalOwner = employeesRepository.findById(project.ownerId());
+            owner = optionalOwner.orElseThrow(() -> new NoRecordFoundException("There is no employee with given ownerId"));
         }
-        var owner = optionalOwner.orElseThrow(() -> new NoRecordFoundException("There is no employee with given ownerId"));
 
         Set<EmployeeModel> membersOfProject = new HashSet<>();
         membersOfProject.add(owner);
@@ -68,7 +72,7 @@ public class ProjectsController {
                 project.previsionDate().atStartOfDay(ZoneId.systemDefault()).toInstant(),
                 membersOfProject
         );
-        repository.save(newProject);
+        var projectRecorded = repository.save(newProject);
 
         membersOfProject.forEach(member -> employeesProjectsRepository
                 .save(new EmployeesProjectsModel(
@@ -77,5 +81,7 @@ public class ProjectsController {
                     newProject
                 ))
         );
+        projectRecorded.setEmployees(membersOfProject);
+        return new ResponseEntity<>(projectRecorded, HttpStatus.CREATED);
     }
 }

@@ -6,6 +6,8 @@ import com.ethamorim.orlachallengebackend.model.DepartmentModel;
 import com.ethamorim.orlachallengebackend.model.EmployeeModel;
 import com.ethamorim.orlachallengebackend.repository.DepartmentsRepository;
 import com.ethamorim.orlachallengebackend.repository.EmployeesRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +30,7 @@ public class EmployeesController {
     }
 
     @PostMapping
-    public void postEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<EmployeeModel> postEmployee(@RequestBody Employee employee) {
         Optional<DepartmentModel> optionalDepartment;
         if (employee.departmentEmail() != null) {
             optionalDepartment = departmentRepository.findByEmail(employee.departmentEmail());
@@ -45,7 +47,7 @@ public class EmployeesController {
                 employee.isManager(),
                 department
         );
-        this.repository.save(newEmployee);
+        return new ResponseEntity<>(this.repository.save(newEmployee), HttpStatus.CREATED);
     }
 
 }
