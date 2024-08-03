@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
 import java.time.Instant;
+import java.util.Set;
 
 @Entity
 @Table(name = "projects")
@@ -11,11 +12,12 @@ public class ProjectModel {
 
     public ProjectModel() {}
 
-    public ProjectModel(String name, String description, Instant creationDate, Instant previsionDate) {
+    public ProjectModel(String name, String description, Instant creationDate, Instant previsionDate, Set<EmployeeModel> employees) {
         this.name = name;
         this.description = description;
         this.creationDate = creationDate;
         this.previsionDate = previsionDate;
+        this.employees = employees;
     }
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +34,9 @@ public class ProjectModel {
 
     @Column(nullable = false)
     Instant previsionDate;
+
+    @ManyToMany(mappedBy = "projects")
+    Set<EmployeeModel> employees;
 
     public int getId() {
         return id;
@@ -67,5 +72,13 @@ public class ProjectModel {
 
     public void setPrevisionDate(Instant previsionDate) {
         this.previsionDate = previsionDate;
+    }
+
+    public Set<EmployeeModel> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<EmployeeModel> employees) {
+        this.employees = employees;
     }
 }

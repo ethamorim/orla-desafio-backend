@@ -5,6 +5,7 @@ import org.hibernate.annotations.NaturalId;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "employees")
@@ -44,6 +45,10 @@ public class EmployeeModel {
 
     @ManyToOne
     DepartmentModel department;
+
+    @ManyToMany
+    @JoinTable(name = "employees_projects")
+    Set<ProjectModel> projects;
 
     public int getId() {
         return id;

@@ -9,10 +9,10 @@ public class EmployeesProjectsModel {
 
     public EmployeesProjectsModel() {}
 
-    public EmployeesProjectsModel(boolean isOwner, EmployeeModel employee, ProjectModel project) {
+    public EmployeesProjectsModel(boolean isOwner, EmployeeModel employees, ProjectModel projects) {
         this.isOwner = isOwner;
-        this.employee = employee;
-        this.project = project;
+        this.employees = employees;
+        this.projects = projects;
     }
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +22,11 @@ public class EmployeesProjectsModel {
 
     @NaturalId
     @ManyToOne
-    EmployeeModel employee;
+    EmployeeModel employees;
 
     @NaturalId
     @ManyToOne
-    ProjectModel project;
+    ProjectModel projects;
 
     public int getId() {
         return id;
