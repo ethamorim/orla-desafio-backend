@@ -4,6 +4,21 @@ Esse projeto é a resolução do desafio de backend Java proposto pela Orla,
 onde foi solicitado um CRUD parcial de dois recursos principais: funcionários
 e projetos.
 
+## Índice
+
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Executando o projeto](#executando-o-projeto)
+- [Testes](#testes)
+- [Modelagem do banco](#modelagem-do-banco)
+- [API](#api)
+  - [POST `/departments`](#post-departments)
+  - [GET `/departments`](#get-departments)
+  - [POST `/employees`](#post-employees)
+  - [GET `/employees`](#get-employees)
+  - [POST `/projects`](#post-projects)
+  - [GET `/projects`](#get-projects)
+  - [GET `/projects/{id}`](#get-projectsid)
+
 ## Tecnologias Utilizadas
 
 - Java 21
